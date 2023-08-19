@@ -20,10 +20,10 @@
     showDefinition = hideOnHover ? false : true;
   }}
 >
-  <section class="p-4 h1">{letter.index}</section>
+  <section class="p-4 h1">{letter.Index}</section>
   <section class="h5">
     {#if showDefinition}
-      {letter.title}
+      {letter.Title}
     {:else}
       <div class="placeholder" />
     {/if}

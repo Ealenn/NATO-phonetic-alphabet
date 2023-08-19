@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AlphabetService } from '$lib/alphabet';
+  import { AlphabetService } from '$lib/services/alphabet.service';
   import { Configuration } from '../lib/configuration';
   import LetterCard from '../components/letter-card.svelte';
 

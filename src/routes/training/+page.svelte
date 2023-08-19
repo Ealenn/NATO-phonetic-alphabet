@@ -1,54 +1,33 @@
 <script lang="ts">
-  import { AlphabetService } from '$lib/alphabet';
+  import { AlphabetService } from '$lib/services/alphabet.service';
   import type { Letter } from '$lib/models/letter';
-  import { Accordion, AccordionItem, ProgressBar } from '@skeletonlabs/skeleton';
+  import { modalStore } from '@skeletonlabs/skeleton';
   import LetterCard from '../../components/letter-card.svelte';
   import { Configuration } from '$lib/configuration';
+  import { StatisticService } from '$lib/services/statistics.service';
+  import StatisticsModal from '../../components/statistics-modal.svelte';
 
   const alphabetService = new AlphabetService();
+  const statisticService = new StatisticService(alphabetService);
 
-  let stats: Record<string, { win: number; loose: number }> = {};
+  let stats = statisticService.getAlphabetStatistics();
   let current = alphabetService.getRandom();
 
-  function refreshLetter(refreshStats?: boolean) {
-    if (refreshStats) {
-      stats = {};
-    }
+  function refresh(refreshStats?: boolean) {
     current = alphabetService.getRandom();
+    if (refreshStats) {
+      stats = statisticService.reset();
+    }
   }
 
   function win(letter: Letter) {
-    const currentStats = stats[letter.index];
-    if (currentStats) {
-      stats[letter.index] = {
-        ...currentStats,
-        win: currentStats.win + 1
-      };
-    } else {
-      stats[letter.index] = {
-        loose: 0,
-        win: 1
-      };
-    }
-
-    refreshLetter();
+    stats = statisticService.win(letter);
+    refresh();
   }
 
   function loose(letter: Letter) {
-    const currentStats = stats[letter.index];
-    if (currentStats) {
-      stats[letter.index] = {
-        ...currentStats,
-        loose: currentStats.loose + 1
-      };
-    } else {
-      stats[letter.index] = {
-        loose: 1,
-        win: 0
-      };
-    }
-
-    refreshLetter();
+    stats = statisticService.loose(letter);
+    refresh();
   }
 </script>
 
@@ -80,58 +59,28 @@
       <button
         type="button"
         class="m-1 btn-icon btn-icon-xl variant-filled"
-        on:click={() => refreshLetter(true)}
+        on:click={() => refresh(true)}
       >
         <i class="ti ti-refresh" />
       </button>
     </div>
 
-    <div class="container">
-      {#if Object.keys(stats).length != 0}
-        <div
-          class="card !bg-transparent mt-5"
-          style="box-shadow: none!important; border: none!important; text-align: center;"
-        >
-          <section>
-            Global ({Object.keys(stats).reduce((previous, key) => previous + stats[key].win, 0)} / {Object.keys(
-              stats
-            ).reduce((previous, key) => previous + stats[key].win + stats[key].loose, 0)})
-            <ProgressBar
-              label="Progress Bar"
-              meter="bg-success-500"
-              track="bg-error-500"
-              value={Object.keys(stats).reduce((previous, key) => previous + stats[key].win, 0)}
-              max={Object.keys(stats).reduce(
-                (previous, key) => previous + stats[key].win + stats[key].loose,
-                0
-              )}
-            />
-          </section>
-        </div>
-
-        <Accordion>
-          <AccordionItem>
-            <svelte:fragment slot="lead">
-              <i class="ti ti-chart-histogram" />
-            </svelte:fragment>
-            <svelte:fragment slot="summary">Stats</svelte:fragment>
-            <svelte:fragment slot="content">
-              {#each Object.keys(stats).map((value) => value) as letterStats}
-                <section>
-                  {letterStats}
-                  <ProgressBar
-                    label={letterStats}
-                    meter="bg-success-500"
-                    track="bg-error-500"
-                    value={stats[letterStats].win}
-                    max={stats[letterStats].win + stats[letterStats].loose}
-                  />
-                </section>
-              {/each}
-            </svelte:fragment>
-          </AccordionItem>
-        </Accordion>
-      {/if}
+    <div class="mx-auto justify-center place-content-center">
+      <button
+        type="button"
+        class="btn variant-soft"
+        on:click={() =>
+          modalStore.trigger({
+            type: 'component',
+            component: {
+              ref: StatisticsModal,
+              props: { stats }
+            }
+          })}
+      >
+        <span><i class="ti ti-chart-histogram" /></span>
+        <span>Statistics</span>
+      </button>
     </div>
   </div>
 </div>
