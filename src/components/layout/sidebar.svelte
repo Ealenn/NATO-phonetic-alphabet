@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
+  import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
   import { Configuration } from '$lib/configuration';
 
   const menuElements = {

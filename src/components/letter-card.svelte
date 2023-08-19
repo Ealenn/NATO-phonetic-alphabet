@@ -2,9 +2,9 @@
   import type { Letter } from '$lib/models/letter';
 
   export let letter: Letter;
-  export let additionalClass: string = '';
+  export let additionalClass = '';
 
-  export let hideOnHover: boolean = false;
+  export let hideOnHover = false;
   let showDefinition = hideOnHover ? false : true;
 </script>
 
