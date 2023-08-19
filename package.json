@@ -1,0 +1,47 @@
+{
+  "name": "nato-phonetic-alphabet",
+  "version": "0.0.1",
+  "author": "Rudy Marchandise",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ealenn/NATO-phonetic-alphabet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ealenn/NATO-phonetic-alphabet/issues"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "format": "prettier --plugin-search-dir . --write ."
+  },
+  "devDependencies": {
+    "@floating-ui/dom": "^1.x",
+    "@skeletonlabs/skeleton": "^1.x",
+    "@sveltejs/adapter-static": "^2.x",
+    "@sveltejs/kit": "^1.x",
+    "@tailwindcss/forms": "^0.x",
+    "@tailwindcss/typography": "^0.x",
+    "@typescript-eslint/eslint-plugin": "^5.x",
+    "@typescript-eslint/parser": "^5.x",
+    "autoprefixer": "^10.x",
+    "eslint": "^8.x",
+    "eslint-config-prettier": "^8.x",
+    "eslint-plugin-svelte": "^2.x",
+    "highlight.js": "^11.x",
+    "postcss": "^8.x",
+    "prettier": "^2.x",
+    "prettier-plugin-svelte": "^2.x",
+    "svelte": "^3.x",
+    "svelte-check": "^3.x",
+    "tailwindcss": "^3.x",
+    "tslib": "^2.x",
+    "typescript": "^5.x",
+    "vite": "^4.x"
+  },
+  "type": "module"
+}
