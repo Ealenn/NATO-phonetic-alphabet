@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
+  import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
   import { Configuration } from '$lib/configuration';
 
   const menuElements = {
@@ -28,7 +28,11 @@
 
 <AppRail>
   {#each menuElements.actions as element}
-    <AppRailAnchor href={element.Url} title={element.Title} selected={$page.url.pathname === element.Url}>
+    <AppRailAnchor
+      href={element.Url}
+      title={element.Title}
+      selected={$page.url.pathname === element.Url}
+    >
       <svelte:fragment slot="lead">
         <i class={element.Icon} />
       </svelte:fragment>
