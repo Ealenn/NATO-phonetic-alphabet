@@ -1,4 +1,5 @@
 <script>
+  import { base as basePath } from '$app/paths';
   import { page } from '$app/stores';
   import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
   import { Configuration } from '$lib/configuration';
@@ -8,12 +9,12 @@
       {
         Icon: 'ti ti-abc',
         Title: 'Alphabet',
-        Url: '/'
+        Url: basePath
       },
       {
         Icon: 'ti ti-cards',
         Title: 'Training',
-        Url: '/training'
+        Url: `${basePath}/training`
       }
     ],
     footer: [
