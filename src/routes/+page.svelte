@@ -1,14 +1,16 @@
-<script>
+<script lang="ts">
   import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
   import AlphabetTab from './tabs/alphabet.svelte';
   import TrainingTab from './tabs/training.svelte';
+  import { Configuration } from '../lib/configuration';
 
   let currentTile = 'alphabet';
 </script>
 
 <svelte:head>
   <title
-    >NATO Phonetic Alphabet - {currentTile.charAt(0).toUpperCase() + currentTile.slice(1)}</title
+    >{Configuration.Project.Name} - {currentTile.charAt(0).toUpperCase() +
+      currentTile.slice(1)}</title
   >
 </svelte:head>
 
@@ -28,7 +30,11 @@
     </AppRailTile>
 
     <svelte:fragment slot="trail">
-      <AppRailAnchor href="/" target="_blank" title="GitHub">
+      <AppRailAnchor
+        href={Configuration.Github.Link}
+        target="_blank"
+        title={Configuration.Github.Title}
+      >
         <i class="ti ti-brand-github-filled" />
       </AppRailAnchor>
     </svelte:fragment>
