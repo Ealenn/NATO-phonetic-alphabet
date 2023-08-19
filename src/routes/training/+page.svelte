@@ -14,7 +14,12 @@
   let current = alphabetService.getRandom();
 
   function refresh(refreshStats?: boolean) {
-    current = alphabetService.getRandom();
+    const oldIndex = current.Index;
+
+    do {
+      current = alphabetService.getRandom();
+    } while (oldIndex === current.Index);
+
     if (refreshStats) {
       stats = statisticService.reset();
     }
