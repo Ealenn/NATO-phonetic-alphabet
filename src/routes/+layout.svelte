@@ -5,6 +5,14 @@
   import '@skeletonlabs/skeleton/styles/skeleton.css';
   // Most of your app wide CSS should be put in this file
   import '../app.postcss';
+  import { AppShell } from '@skeletonlabs/skeleton';
+  import Sidebar from '../components/layout/sidebar.svelte';
 </script>
 
-<slot />
+<AppShell>
+  <svelte:fragment slot="sidebarLeft">
+    <Sidebar />
+  </svelte:fragment>
+
+  <slot />
+</AppShell>
