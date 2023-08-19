@@ -1,4 +1,4 @@
 export interface Letter {
-  readonly index: string;
-  readonly title: string;
+  readonly Index: string;
+  readonly Title: string;
 }
