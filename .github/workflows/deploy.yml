@@ -4,11 +4,6 @@ on:
   push:
     branches: 
       - master
-  pull_request:
-    branches: 
-      - master
-      - feature/*
-      - fix/*
 
 jobs:
   build_site:
