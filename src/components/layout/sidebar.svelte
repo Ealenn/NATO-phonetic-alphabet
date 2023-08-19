@@ -9,7 +9,7 @@
       {
         Icon: 'ti ti-abc',
         Title: 'Alphabet',
-        Url: basePath
+        Url: `${basePath}/`
       },
       {
         Icon: 'ti ti-cards',
